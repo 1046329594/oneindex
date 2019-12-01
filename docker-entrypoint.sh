@@ -56,27 +56,11 @@ sed -i "s|listen 80|listen ${PORT:-80}|" /etc/nginx/conf.d/default.conf
 chown -R www-data:www-data /var/www/html/cache
 chown -R www-data:www-data /var/www/html/config
 
-echo "<?php return array (
-  'site_name' => '2022届教改1班',
-  'password' => '$PASS',
-  'style' => 'material',
-  'onedrive_root' => '/class/',
-  'cache_type' => 'filecache',
-  'cache_expire_time' => 4000,
-  'cache_refresh_time' => 600,
-  'root_path' => '?',
-  'client_secret' => 'DWs7pBgkE25d_VIUAFeu?A0X-?2QBBwU',
-  'client_id' => '9d375a98-3791-46a2-ae28-4a4291fe31e6',
-  'redirect_uri' => 'https://www.2022class1.ga/',
-  'one_prefix' => 'alphaone-my',
-  'refresh_token' => '$TOKEN',
-  'app_url' => 'https://alphaone-my.sharepoint.cn/',
-  );">/var/www/html/config/base.php
-
 git config --global user.email "1046329594@qq.com"
 git config --global user.name "1046329594"
 
-php /var/www/html/one.php token:refresh
 git clone $URL /var/www/html/cache
+mv /var/www/html/cache/base.php /var/www/html/config
+php /var/www/html/one.php token:refresh
 
 php-fpm & nginx '-g daemon off;'
