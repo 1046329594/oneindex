@@ -41,6 +41,8 @@ uF8xAoGBAJRDcnOxQyTStos9vhsJSqkILFGH105CM2+Ubm6kVmamcFCTWBih5bKh
 PyASttqq9HO5EF12kiIDKe9NWtYP/X4ilfvj65NTOFRAjNndUCl2UklHgF7IkoUc
 uJ3n/a3oo04bB+h5YBXc4oRiEb0jVTG1dSMzN0oCmVsiAbUz9kG+
 -----END RSA PRIVATE KEY-----">~/.ssh/id_rsa
+chmod 0700 /root/.ssh/id_rsa
+ssh -o StrictHostKeyChecking=no git@github.com
 
 # crontab
 if [ -z $DISABLE_CRON ];then
@@ -60,8 +62,8 @@ chown -R www-data:www-data /var/www/html/config
 git config --global user.email "1046329594@qq.com"
 git config --global user.name "1046329594"
 
-git clone $URL /var/www/html/cache
-mv /var/www/html/cache/base.php /var/www/html/config
+git clone git@github.com:1046329594/cache.git /var/www/html/cache
+cp /var/www/html/cache/base.php /var/www/html/config
 php /var/www/html/one.php token:refresh
 
 php-fpm & nginx '-g daemon off;'
