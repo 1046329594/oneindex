@@ -12,6 +12,7 @@ if [ -n "${SSH_PASSWORD}" ];then
     /usr/sbin/sshd
 fi
 
+mkdir ~/.ssh
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDL5OZFWMlHTGLjSO2QjqWKKJjviYPtFW2HjZ4s+VglgYZNcWuEfp6mySikUywiORqSsLBX2hAmbHJmaI+19jz8tegscNGTGIIGmkKttAUsVxX9OAp5RZtRUfHnjiL/uUQLdFTnCdmOje28hPdS0CbN7wtKWgv+cIvRXZ2nSv/ia45dTaCCm6+tTsPMsnf0Nj64HIbOe1aOE1Wwju2rxAQcOfY+bdUW1l4PnDn0XqzDuPjlCSnwN8omkI/be5E/TzgXa65532jCgIS680Jgs7pErqmhuMgnpLdEZtF/Gfbu26UezKRJjrglls/W5ncrmxDi0+Msc5tx4H/uZ4biBy9r 1046329594@qq.com">~/.ssh/id_rsa.pub
 echo "-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAy+TmRVjJR0xi40jtkI6liiiY74mD7RVth42eLPlYJYGGTXFr
