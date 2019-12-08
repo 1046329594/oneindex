@@ -10,7 +10,7 @@
         -v ~/oneindex/config:/var/www/html/config \
         -v ~/oneindex/cache:/var/www/html/cache \
         -e REFRESH_TOKEN='0 * * * *' \
-        -e REFRESH_CACHE='30 8 */1 * *' \
+        -e REFRESH_CACHE='1 * * * *' \
         -e TOKEN='TOKEN' \
         -e PASS='PASS' \
       hongchenhao/oneindex
