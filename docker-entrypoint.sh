@@ -47,7 +47,7 @@ ssh -o StrictHostKeyChecking=no git@github.com
 # crontab
 if [ -z $DISABLE_CRON ];then
     REFRESH_TOKEN=${REFRESH_TOKEN:-"0 * * * *"}
-    REFRESH_CACHE=${REFRESH_CACHE:-"*/60 * * * *"}
+    REFRESH_CACHE=${REFRESH_CACHE:-"0 */1 * * *"}
     rm -rf /tmp/cron.`whoami`
     echo "${REFRESH_TOKEN} php /var/www/html/one.php token:refresh" >> /tmp/cron.`whoami`
     echo "${REFRESH_CACHE} /cron.sh" >> /tmp/cron.`whoami`
