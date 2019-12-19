@@ -51,6 +51,7 @@ if [ -z $DISABLE_CRON ];then
     rm -rf /tmp/cron.`whoami`
     echo "${REFRESH_TOKEN} php /var/www/html/one.php token:refresh" >> /tmp/cron.`whoami`
     echo "${REFRESH_CACHE} /cron.sh" >> /tmp/cron.`whoami`
+    echo "30 3 * * * /usr/bin/killall nginx" >> /tmp/cron.`whoami`
     crontab -u `whoami` /tmp/cron.`whoami`
     crond
 fi
