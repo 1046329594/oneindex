@@ -12,7 +12,7 @@ RUN apk add --no-cache \
     mv /default.conf /etc/nginx/conf.d && \
     mv /php.ini /usr/local/etc/php && \
     chmod +x /docker-entrypoint.sh /cron.sh && \
-    git clone https://github.com/1046329594/oneindex2.git /var/www/html && \
+    git clone https://github.com/1046329594/oneindex3.git /var/www/html && \
     ssh-keygen -A
 
 # Persistent config file and cache
