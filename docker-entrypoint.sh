@@ -62,7 +62,7 @@ chown -R www-data:www-data /var/www/html/config
 git config --global user.email "1046329594@qq.com"
 git config --global user.name "1046329594"
 ssh -T -o StrictHostKeyChecking=no git@github.com
-git clone git@github.com:1046329594/oneindex3.git /root/oneindex
+git clone -b master git@github.com:1046329594/oneindex3.git /root/oneindex
 \cp -rf /var/www/html/cache /root/oneindex/cache
 \cp -rf /var/www/html/config /root/oneindex/config
 \mv -f /root/oneindex/* /var/www/html
