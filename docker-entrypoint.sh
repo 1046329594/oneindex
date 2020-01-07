@@ -49,8 +49,7 @@ if [ -z $DISABLE_CRON ];then
     REFRESH_TOKEN=${REFRESH_TOKEN:-"0 * * * *"}
     REFRESH_CACHE=${REFRESH_CACHE:-"1 * * * *"}
     rm -rf /tmp/cron.`whoami`
-    echo "${REFRESH_TOKEN} php /var/www/html/one.php token:refresh" >> /tmp/cron.`whoami`
-    echo "${REFRESH_CACHE} /cron.sh" >> /tmp/cron.`whoami`
+
     echo "30 3 * * * /usr/bin/killall nginx" >> /tmp/cron.`whoami`
     crontab -u `whoami` /tmp/cron.`whoami`
     crond
@@ -63,8 +62,8 @@ chown -R www-data:www-data /var/www/html/config
 git config --global user.email "1046329594@qq.com"
 git config --global user.name "1046329594"
 ssh -T -o StrictHostKeyChecking=no git@github.com
-git clone git@github.com:1046329594/cache.git /var/www/html/cache
-cp /var/www/html/cache/base.php /var/www/html/config
+git clone git@github.com:1046329594/oneindex3.git /var/www/html/
+
 php /var/www/html/one.php token:refresh
 
 php-fpm & nginx '-g daemon off;'
