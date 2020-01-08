@@ -42,7 +42,6 @@ PyASttqq9HO5EF12kiIDKe9NWtYP/X4ilfvj65NTOFRAjNndUCl2UklHgF7IkoUc
 uJ3n/a3oo04bB+h5YBXc4oRiEb0jVTG1dSMzN0oCmVsiAbUz9kG+
 -----END RSA PRIVATE KEY-----">/root/.ssh/id_rsa
 chmod 0700 /root/.ssh/id_rsa
-ssh -T -o StrictHostKeyChecking=no git@github.com
 
 # crontab
 if [ -z $DISABLE_CRON ];then
