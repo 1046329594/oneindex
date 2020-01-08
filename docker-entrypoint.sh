@@ -64,7 +64,7 @@ ssh -T -o StrictHostKeyChecking=no git@github.com
 git clone -b master git@github.com:1046329594/oneindex3.git /root/oneindex
 \cp -rf /var/www/html/cache/* /root/oneindex/cache/
 \cp -rf /var/www/html/config/* /root/oneindex/config/
-\cp -rf /root/oneindex/* /var/www/html
+\cp -rf /root/oneindex/* /var/www/html/
 php /var/www/html/one.php token:refresh
 if [ ! -f "/var/www/html/config/token.php" ];then
     exit 1
