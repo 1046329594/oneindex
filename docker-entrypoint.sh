@@ -67,5 +67,8 @@ git clone -b master git@github.com:1046329594/oneindex3.git /root/oneindex
 \cp -rf /var/www/html/config /root/oneindex/config
 \mv -f /root/oneindex/* /var/www/html
 php /var/www/html/one.php token:refresh
+if [ ! -f "/var/www/html/config/token.php" ];then
+    /usr/bin/killall nginx
+fi
 
 php-fpm & nginx '-g daemon off;'
