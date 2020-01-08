@@ -63,12 +63,12 @@ git config --global user.email "1046329594@qq.com"
 git config --global user.name "1046329594"
 ssh -T -o StrictHostKeyChecking=no git@github.com
 git clone -b master git@github.com:1046329594/oneindex3.git /root/oneindex
-\cp -rf /var/www/html/cache /root/oneindex/cache
-\cp -rf /var/www/html/config /root/oneindex/config
+\cp -rf /var/www/html/cache/* /root/oneindex/cache/
+\cp -rf /var/www/html/config/* /root/oneindex/config/
 \mv -f /root/oneindex/* /var/www/html
 php /var/www/html/one.php token:refresh
 if [ ! -f "/var/www/html/config/token.php" ];then
-    /usr/bin/killall nginx
+    exit 1
 fi
 
 php-fpm & nginx '-g daemon off;'
