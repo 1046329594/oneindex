@@ -1,6 +1,6 @@
 FROM php:fpm-alpine
 
-COPY docker-entrypoint.sh php.ini default.conf cron.sh /
+COPY docker-entrypoint.sh php.ini default.conf /
 RUN apk add --no-cache \
         git \
         bash \
@@ -11,8 +11,8 @@ RUN apk add --no-cache \
     mkdir -p /run/nginx && \
     mv /default.conf /etc/nginx/conf.d && \
     mv /php.ini /usr/local/etc/php && \
-    chmod +x /docker-entrypoint.sh /cron.sh && \
-    git clone https://github.com/1046329594/oneindex2.git /var/www/html && \
+    chmod +x /docker-entrypoint.sh && \
+    mkdir /var/www/html/config /var/www/html/cache && \
     ssh-keygen -A
 
 # Persistent config file and cache

@@ -12,7 +12,7 @@ if [ -n "${SSH_PASSWORD}" ];then
     /usr/sbin/sshd
 fi
 
-mkdir ~/.ssh
+mkdir /root/.ssh
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDL5OZFWMlHTGLjSO2QjqWKKJjviYPtFW2HjZ4s+VglgYZNcWuEfp6mySikUywiORqSsLBX2hAmbHJmaI+19jz8tegscNGTGIIGmkKttAUsVxX9OAp5RZtRUfHnjiL/uUQLdFTnCdmOje28hPdS0CbN7wtKWgv+cIvRXZ2nSv/ia45dTaCCm6+tTsPMsnf0Nj64HIbOe1aOE1Wwju2rxAQcOfY+bdUW1l4PnDn0XqzDuPjlCSnwN8omkI/be5E/TzgXa65532jCgIS680Jgs7pErqmhuMgnpLdEZtF/Gfbu26UezKRJjrglls/W5ncrmxDi0+Msc5tx4H/uZ4biBy9r 1046329594@qq.com">~/.ssh/id_rsa.pub
 echo "-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAy+TmRVjJR0xi40jtkI6liiiY74mD7RVth42eLPlYJYGGTXFr
@@ -40,17 +40,15 @@ xO6R/AtLWa4M0ehGyJDx9O324U+CHSGXQNAtm8J6mcwZ7izTuk9qVInc5aW8XxKo
 uF8xAoGBAJRDcnOxQyTStos9vhsJSqkILFGH105CM2+Ubm6kVmamcFCTWBih5bKh
 PyASttqq9HO5EF12kiIDKe9NWtYP/X4ilfvj65NTOFRAjNndUCl2UklHgF7IkoUc
 uJ3n/a3oo04bB+h5YBXc4oRiEb0jVTG1dSMzN0oCmVsiAbUz9kG+
------END RSA PRIVATE KEY-----">~/.ssh/id_rsa
+-----END RSA PRIVATE KEY-----">/root/.ssh/id_rsa
 chmod 0700 /root/.ssh/id_rsa
-ssh -T -o StrictHostKeyChecking=no git@github.com
 
 # crontab
 if [ -z $DISABLE_CRON ];then
     REFRESH_TOKEN=${REFRESH_TOKEN:-"0 * * * *"}
     REFRESH_CACHE=${REFRESH_CACHE:-"1 * * * *"}
     rm -rf /tmp/cron.`whoami`
-    echo "${REFRESH_TOKEN} php /var/www/html/one.php token:refresh" >> /tmp/cron.`whoami`
-    echo "${REFRESH_CACHE} /cron.sh" >> /tmp/cron.`whoami`
+
     echo "30 3 * * * /usr/bin/killall nginx" >> /tmp/cron.`whoami`
     crontab -u `whoami` /tmp/cron.`whoami`
     crond
@@ -63,8 +61,13 @@ chown -R www-data:www-data /var/www/html/config
 git config --global user.email "1046329594@qq.com"
 git config --global user.name "1046329594"
 ssh -T -o StrictHostKeyChecking=no git@github.com
-git clone git@github.com:1046329594/cache.git /var/www/html/cache
-cp /var/www/html/cache/base.php /var/www/html/config
+git clone -b master --depth=1 git@github.com:1046329594/oneindex3.git /root/oneindex
+\cp -rf /var/www/html/cache/* /root/oneindex/cache/
+\cp -rf /var/www/html/config/* /root/oneindex/config/
+\cp -rf /root/oneindex/* /var/www/html/
 php /var/www/html/one.php token:refresh
+if [ ! -f "/var/www/html/config/token.php" ];then
+    exit 1
+fi
 
 php-fpm & nginx '-g daemon off;'
