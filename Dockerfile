@@ -1,5 +1,5 @@
 FROM php:fpm-alpine
-
+ENV HOME /root
 COPY docker-entrypoint.sh php.ini default.conf /
 RUN apk add --no-cache \
         git \
