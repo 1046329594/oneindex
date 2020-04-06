@@ -1,7 +1,7 @@
 FROM php:fpm-alpine
 ENV HOME /root
 COPY docker-entrypoint.sh php.ini default.conf /
-COPY oneindex/* /var/www/html/
+COPY oneindex3/* /var/www/html/
 RUN apk add --no-cache \
         bash \
         nginx \
